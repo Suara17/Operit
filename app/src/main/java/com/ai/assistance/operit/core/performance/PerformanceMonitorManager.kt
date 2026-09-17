@@ -9,7 +9,7 @@ import android.os.SystemClock
 import android.system.Os
 import android.system.OsConstants
 import com.ai.assistance.operit.core.tools.packTool.PackageManager
-import com.ai.assistance.operit.terminal.TerminalManager
+// import com.ai.assistance.operit.terminal.TerminalManager
 import com.ai.assistance.operit.util.AppLogger
 import java.io.File
 import java.util.ArrayDeque
@@ -357,17 +357,8 @@ object PerformanceMonitorManager {
     }
 
     private fun collectTerminalSessions(): List<TerminalSessionRef> {
-        val context = appContext ?: return emptyList()
-        val sessions =
-            TerminalManager.getInstance(context).terminalState.value.sessions
-        return sessions.mapNotNull { session ->
-            val pid = session.pty?.pid ?: -1
-            if (pid > 0) {
-                TerminalSessionRef(id = session.id, title = session.title, pid = pid)
-            } else {
-                null
-            }
-        }
+        // 轻量纯净版已移除终端环境，不采样终端 session
+        return emptyList()
     }
 
     // ————————————————————————————— /proc 读取 —————————————————————————————

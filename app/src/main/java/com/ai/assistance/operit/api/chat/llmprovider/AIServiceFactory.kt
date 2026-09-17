@@ -1,7 +1,7 @@
 package com.ai.assistance.operit.api.chat.llmprovider
 
 import android.content.Context
-import com.ai.assistance.llama.LlamaSession
+// import com.ai.assistance.llama.LlamaSession
 import com.ai.assistance.operit.data.model.ApiProviderType
 import com.ai.assistance.operit.data.model.ModelConfigData
 import com.ai.assistance.operit.data.preferences.ModelConfigManager
@@ -465,29 +465,13 @@ object AIServiceFactory {
                     thinkingOptionId = config.thinkingOptionId,
                 )
 
-            // MNN本地推理引擎
+            // MNN本地推理引擎（轻量模式已移除本地推理）
             ApiProviderType.MNN ->
-                MNNProvider(
-                    context = context,
-                    modelName = config.modelName,
-                    forwardType = config.mnnForwardType,
-                    threadCount = config.mnnThreadCount,
-                    providerType = providerType,
-                    enableToolCall = enableToolCall,
-                    supportsVision = supportsVision,
-                    supportsAudio = supportsAudio,
-                    supportsVideo = supportsVideo
-                )
+                throw UnsupportedOperationException("轻量版已移除本地 MNN 推理，请使用云端模型。")
 
-            // llama.cpp 本地推理引擎
+            // llama.cpp 本地推理引擎（轻量模式已移除本地推理）
             ApiProviderType.LLAMA_CPP ->
-                LlamaProvider(
-                    context = context,
-                    modelName = config.modelName,
-                    sessionConfig = buildAndroidLlamaSessionConfig(config),
-                    providerType = providerType,
-                    enableToolCall = enableToolCall
-                )
+                throw UnsupportedOperationException("轻量版已移除本地 Llama 推理，请使用云端模型。")
 
             // 阿里云（通义千问）使用QwenProvider
             ApiProviderType.ALIYUN ->
