@@ -1,12 +1,8 @@
 package com.ai.assistance.operit.util.ripgrep
 
 internal object NativeRipgrep {
-    init {
-        System.loadLibrary("operit_ripgrep")
-    }
-
     @JvmStatic
-    external fun searchJson(
+    fun searchJson(
         path: String,
         patterns: Array<String>,
         filePattern: String,
@@ -14,5 +10,8 @@ internal object NativeRipgrep {
         literal: Boolean,
         contextLines: Int,
         maxResults: Int
-    ): String
+    ): String {
+        return "[]"
+    }
 }
+

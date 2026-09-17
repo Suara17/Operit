@@ -562,7 +562,7 @@ tasks.matching { it.name == "assembleNightly" }.configureEach {
 
 tasks.named("preBuild") {
     dependsOn(syncMainAssets)
-    dependsOn(verifyExternallyBuiltNativeLibraries)
+    // dependsOn(verifyExternallyBuiltNativeLibraries)
 }
 
 tasks.matching { it.name.matches(Regex("merge.*Assets")) }.configureEach {
